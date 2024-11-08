@@ -1,0 +1,2 @@
+# indiaMap
+ This web application features an interactive map of India that allows users to click on various states or regions to view real-time weather information. The map is built using SVG (Scalable Vector Graphics), providing an engaging and dynamic user experience. By clicking on different states, users can access weather updates for specific locations, making it easy to stay informed about the climate across the country. The project is designed to be responsive and visually intuitive, offering a seamless experience across devices.
