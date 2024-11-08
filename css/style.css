@@ -16,6 +16,9 @@ body {
     padding: 0;
     overflow-x: hidden;
     background-image: linear-gradient(orange,white,green);
+    user-select: none;
+    touch-action:none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
   
   #title {
@@ -32,11 +35,13 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    user-select: none;
   }
   #india_map svg{
     height: 100vh;
     overflow: visible;
     width: 650px;
+    cursor: pointer;
   }
   .weather-info {
     padding: 20px;
@@ -71,6 +76,12 @@ body {
   }
   #weatherLabel{
     float: left;
+  }
+  #weatherLabel p, #weatherDetails p{
+    padding: 5px;
+  }
+  #weatherLabel hr, #weatherDetails hr{
+    border: 1px solid red;
   }
   #weatherDetails {
     margin-bottom: 20px;
