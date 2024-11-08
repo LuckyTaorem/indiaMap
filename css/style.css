@@ -1,0 +1,209 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html{
+    width: 100vw;
+}
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #1c1c1c; */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-image: linear-gradient(orange,white,green);
+  }
+  
+  #title {
+    font-size: 25px;
+    fill: black;
+    text-wrap: wrap;
+    font-family:monospace;
+ }
+  .hidden{
+    display: none;
+  }
+  #india_map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  #india_map svg{
+    height: 100vh;
+    overflow: visible;
+    width: 650px;
+  }
+  .weather-info {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin: 20px auto;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    text-wrap: nowrap;
+    max-width: fit-content;
+    min-width: min-content;
+    /* min-height: 2rem;
+    width: 15rem; */
+    padding: 10px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    cursor: move;
+    user-select: none;
+    touch-action: none;
+  }
+.weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .temperature {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffd700;
+  }
+  #weatherLabel{
+    float: left;
+  }
+  #weatherDetails {
+    margin-bottom: 20px;
+    float: right;
+  }
+  
+  .hourly-forecast {
+    width: calc(100vw - 40px);
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .hourly-forecast table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .hourly-forecast th, .hourly-forecast td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #555;
+  }
+  
+  .hourly-forecast img {
+    width: 30px;
+    height: 30px;
+  }
+  #seeMoreBtn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #seeMoreBtn:hover {
+    background-color: #666;
+  }
+  
+#temperatureDisplay {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+.tooltip {
+    font-size: 16px;
+    font-weight: bold;
+    /* margin: auto; */
+}
+
+.tooltip_bg {
+    fill: white;
+    stroke: black;
+    stroke-width: 1;
+    opacity: 0.85;
+}
+.land {
+    fill: #FFF8F4;
+    stroke: black;
+    stroke-width: 1;
+    stroke-miterlimit: 1;
+  }
+  path:hover{
+    /* opacity: 0.5; */
+    fill: rgb(255, 119, 0);
+  }
+  #border {
+    fill : none;
+    stroke : black;
+    stroke-width : 1;
+  }
+
+  @media (min-width: 300px) and (max-width: 768px){
+    #india_map svg{
+        height: 300px;
+        border: 1px solid black;
+        width: 300px;
+      }
+      #india_map{
+        height: 300px;
+      }
+}
+
+/* Modal styles for bottom-right placement */
+.modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Animation for modal appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .modal {
+      bottom: 10px;
+      right: 10px;
+  }
+}
