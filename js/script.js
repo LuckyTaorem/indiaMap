@@ -583,14 +583,21 @@ async function showWeather(element) {
     }
 }
 
-function convertTo12Hour(hour) { // Convert hour to a number 
-    if(hour==24){
+function convertTo12Hour(hour) {
+    hour = Number(hour); // Convert hour to a number
+    
+    // Handle edge case for 24 (midnight)
+    if (hour === 24) {
         hour = 0;
     }
-    hour = Number(hour); // Determine AM or PM 
-    const period = hour >= 12 ? 'PM' : 'AM'; // Convert hour to 12-hour format 
-    hour = hour % 12 || 12; // Converts 0 to 12 for midnight 
-    return `${hour} ${period}`; 
+    
+    // Determine AM or PM
+    const period = (hour >= 12 && hour < 24) ? 'PM' : 'AM';
+    
+    // Convert hour to 12-hour format
+    hour = hour % 12 || 12; // Converts 0 to 12 for midnight
+    
+    return `${hour} ${period}`;
 }
 
 let currentHourIndex = new Date().getHours();
@@ -601,8 +608,12 @@ function displayHourlyForecast() {
     forecastTable.innerHTML = "";
     if(forecastData.length>6) document.getElementById("seeMoreBtn").style.display="block";
     forecastData.slice(0, showHour).forEach((hour) => {
-        const time = (new Date(hour.time).getHours())+1;
-        if(time == 23) document.getElementById("seeMoreBtn").style.display="none";
+        const time = new Date(hour.time).getHours();
+        // console.log(time);
+        if(time >=23){
+            document.getElementById("seeMoreBtn").style.display="none";
+            // return;
+        }
         console.log(time);
         forecastTable.innerHTML += `
             <tr>
@@ -718,9 +729,9 @@ window.addEventListener('scroll', function () {
     const scrollTop = window.scrollY;
     // console.log(scrollTop);
     const windowHeight = window.innerHeight;
-    console.log(Math.round(scrollTop+windowHeight));
+    // console.log(Math.round(scrollTop+windowHeight));
     const documentHeight = document.documentElement.scrollHeight;
-    console.log(documentHeight);
+    // console.log(documentHeight);
 
     // Check if the user has scrolled to the bottom
     if (scrollTop + 1 + windowHeight >= documentHeight) {
