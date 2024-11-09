@@ -16,6 +16,8 @@ body {
     padding: 0;
     overflow-x: hidden;
     background-image: linear-gradient(orange,white,green);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     user-select: none;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }

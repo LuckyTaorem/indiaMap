@@ -144,8 +144,6 @@ const stateCoords = {
     },
 };
 
-let currentHourIndex = new Date().getHours();
-let forecastData = [];
 var stateName = "";
 var data1 = [
     ["IN_UP"],
@@ -576,6 +574,7 @@ async function showWeather(element) {
         weatherInfo.appendChild(weatherDetailsElement);
 
         forecastData = data.forecast.forecastday[0].hour.slice(currentHourIndex);
+        document.getElementById("hourlyForecast").style.display="block";
         displayHourlyForecast();
         if (count == 0) showModel();
     } catch (error) {
@@ -584,15 +583,30 @@ async function showWeather(element) {
     }
 }
 
+function convertTo12Hour(hour) { // Convert hour to a number 
+    if(hour==24){
+        hour = 0;
+    }
+    hour = Number(hour); // Determine AM or PM 
+    const period = hour >= 12 ? 'PM' : 'AM'; // Convert hour to 12-hour format 
+    hour = hour % 12 || 12; // Converts 0 to 12 for midnight 
+    return `${hour} ${period}`; 
+}
+
+let currentHourIndex = new Date().getHours();
+let showHour = 6;
+let forecastData = [];
 function displayHourlyForecast() {
     const forecastTable = document.getElementById("hourlyForecastData");
     forecastTable.innerHTML = "";
-
-    forecastData.slice(0, 6).forEach((hour) => {
-        const time = new Date(hour.time).getHours();
+    if(forecastData.length>6) document.getElementById("seeMoreBtn").style.display="block";
+    forecastData.slice(0, showHour).forEach((hour) => {
+        const time = (new Date(hour.time).getHours())+1;
+        if(time == 23) document.getElementById("seeMoreBtn").style.display="none";
+        console.log(time);
         forecastTable.innerHTML += `
             <tr>
-                <td>${time}:00</td>
+                <td>${convertTo12Hour(time)}</td>
                 <td><img src="https:${hour.condition.icon}" alt="weather icon"></td>
                 <td>${hour.temp_c} °C</td>
                 <td>${hour.humidity} %</td>
@@ -605,7 +619,7 @@ function displayHourlyForecast() {
 }
 
 document.getElementById("seeMoreBtn").addEventListener("click", () => {
-    currentHourIndex += 6;
+    showHour += 6;
     displayHourlyForecast();
 });
 
@@ -680,26 +694,36 @@ container.addEventListener("touchstart", onStart);
 document.addEventListener("touchmove", onMove);
 document.addEventListener("touchend", onEnd);
 
-displayHourlyForecast();
-
 function showModel() {
     const modal = document.getElementById("scrollModal");
-    const closeBtn = document.querySelector(".close");
     const modalContent = document.querySelector(".modal-content");
 
     // Show the modal on page load
     modal.style.display = "flex";
 
-    // Close the modal when the close button is clicked
-    closeBtn.addEventListener("click", function () {
-        modal.style.display = "none";
-    });
-
     // Close the modal when clicking outside the content area
     window.addEventListener("click", function (event) {
         // Check if the click is outside the modal content
-        if (event.target == modal || event.target == modalContent) {
+        if (event.target == modal || event.target == modalContent || event.target==document.getElementById("modelText") || event.target==document.getElementById("modelImage")) {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
             modal.style.display = "none";
         }
     });
 }
+window.addEventListener('scroll', function () {
+    // Get the scroll position and page height
+    const scrollTop = window.scrollY;
+    // console.log(scrollTop);
+    const windowHeight = window.innerHeight;
+    console.log(Math.round(scrollTop+windowHeight));
+    const documentHeight = document.documentElement.scrollHeight;
+    console.log(documentHeight);
+
+    // Check if the user has scrolled to the bottom
+    if (scrollTop + 1 + windowHeight >= documentHeight) {
+        document.getElementById('scrollModal').style.display = 'none';
+    }
+});

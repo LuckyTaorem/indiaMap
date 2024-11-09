@@ -109,14 +109,13 @@
    <div id="weatherInfo" class="weather-info hidden"></div>
    <div id="scrollModal" class="modal">
       <div class="modal-content">
-         <span class="close">&times;</span>
-         <p>Scroll down for the weather forecast</p>
-         <img src="image/doubleDown.gif" height="50" width="50" alt="" srcset="">
+         <p id="modelText">Scroll down for the weather forecast</p>
+         <img id="modelImage" src="image/doubleDown.gif" height="50" width="50" alt="" srcset="">
       </div>
    </div>
 
    <!-- Hourly Forecast Panel -->
-   <div id="hourlyForecast" class="hourly-forecast">
+   <div id="hourlyForecast" class="hourly-forecast" style="display: none;">
       <h3>Hourly Forecast</h3>
       <table>
          <thead>
