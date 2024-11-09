@@ -250,7 +250,7 @@ function init(evt) {
     const compass = document.createElementNS(svgNamespace, "image");
     compass.setAttribute("height", "200");
     compass.setAttribute("width", "300");
-    compass.setAttribute("href", "../image/compass.png");
+    compass.setAttribute("href", "image/compass.png");
 
     const legendGroup = document.createElementNS(
         "http://www.w3.org/2000/svg",
