@@ -378,7 +378,7 @@ let populationData = {};
 // Function to fetch and read the Excel file
 async function loadExcelFile() {
     try {
-        const response = await fetch("../data/states_population.xlsx");
+        const response = await fetch("https://luckytaorem.github.io/indiaMap/data/states_population.xlsx");
         const arrayBuffer = await response.arrayBuffer();
         const workbook = XLSX.read(arrayBuffer, {
             type: "array",
