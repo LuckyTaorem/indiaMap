@@ -44,9 +44,6 @@ body {
     width: 650px;
     cursor: pointer;
   }
-#india_map svg:hover{
-    fill:rgba(0,0,0,0.3);
-}
   .weather-info {
     padding: 20px;
     background-color: #333;
@@ -152,8 +149,7 @@ body {
     stroke-miterlimit: 1;
   }
   path:hover{
-    /* opacity: 0.5; */
-    fill: rgb(255, 119, 0);
+    opacity: 0.5;
   }
   #border {
     fill : none;
